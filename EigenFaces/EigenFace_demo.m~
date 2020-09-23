@@ -10,12 +10,15 @@ fid=fopen('../dataset/1227');
 I = fread(fid);
 imagesc(reshape(I, 128, 128)'); colormap(gray(256));
 title('Original Image');
-eigen_comp = [30,40,50,60,70,80,90,99];
-for loop=1:8
-    subplot(3,3,loop+1)
+eigen_comp = [30,40,50,60,70,80,90,100]
+for loop=2:9
+    subplot(3,3,loop)
     v = faceR(5, 2:100)';
-    e = eigenfaces(1:eigen_comp(loop),:);
-    i = e'*v(1:eigen_comp(loop)) + mean_face';
+    e = eigenfaces(1:eigen_comp(loop-1),:);
+    i = e'*v(1:eigen_comp(loop-1)) + mean_face';
+
     imagesc(reshape(i, 128, 128)'); colormap(gray(256));
-    title(['Reconstructed Image:' int2str(eigen_comp(loop))])
+    title(['Reconstructed Image' str(])
 end
+
+
